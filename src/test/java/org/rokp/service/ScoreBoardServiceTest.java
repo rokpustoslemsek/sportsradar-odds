@@ -1,18 +1,14 @@
 package org.rokp.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.rokp.domain.Match;
+import org.rokp.service.impl.ScoreBoardServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@ExtendWith(MockitoExtension.class)
 public class ScoreBoardServiceTest {
-    @Mock
-    ScoreBoardService scoreBoardService;
+    ScoreBoardService scoreBoardService = new ScoreBoardServiceImpl();
 
     @Test
     public void givenTeams_whenInitializeMatch_returnInitialMatch() {
