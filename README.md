@@ -9,3 +9,9 @@
 * we assume that the scoreboard as a structure is and will be 1 in size, so we can simplify it to a list of matches.
 * therefore we dont even create a structure since we dont have any metadata to keep about the scoreboard.
 * java records are used for match structure to promote immutable nature.
+
+## version 1.0.1
+- added implemenation for simple creation of new match
+
+## version 1.0.2
+- added match score update contract.

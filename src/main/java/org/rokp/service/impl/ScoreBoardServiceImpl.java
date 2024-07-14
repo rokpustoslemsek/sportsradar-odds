@@ -11,4 +11,9 @@ public class ScoreBoardServiceImpl implements ScoreBoardService {
         Match match = new Match(UUID.randomUUID(), homeTeam, awayTeam, 0,0);
         return match;
     }
+
+    @Override
+    public Match updateMatchScore(UUID matchId, int homeScore, int awayScore) {
+        return null;
+    }
 }
