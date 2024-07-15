@@ -26,4 +26,9 @@ public class ScoreBoardServiceImpl implements ScoreBoardService {
         Match match = new Match(matchId, matchToUpdate.homeTeam(), matchToUpdate.awayTeam(), homeScore, awayScore);
         return repository.addOrUpdateMatch(match);
     }
+
+    @Override
+    public Match finishMatch(UUID matchId) {
+        return null;
+    }
 }

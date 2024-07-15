@@ -22,3 +22,6 @@
 
 ## version 1.0.4
 -added implementation for persisting matches into a hashmap
+
+## version 1.0.5
+-added contract to finish match and added tests

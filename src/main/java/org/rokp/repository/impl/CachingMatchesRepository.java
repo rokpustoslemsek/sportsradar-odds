@@ -20,4 +20,9 @@ public class CachingMatchesRepository implements MatchesRepository {
     public Match getMatch(UUID matchId) {
         return matches.get(matchId);
     }
+
+    @Override
+    public Match deleteMatch(UUID matchId) {
+        return null;
+    }
 }

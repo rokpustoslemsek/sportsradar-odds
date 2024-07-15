@@ -10,4 +10,6 @@ public interface MatchesRepository {
 
     Match getMatch(UUID matchId);
 
+    Match deleteMatch(UUID matchId);
+
 }

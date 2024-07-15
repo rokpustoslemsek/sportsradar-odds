@@ -11,12 +11,12 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MatchesRepositoryTest {
+public class MatchesRepositoryTest {
 
     MatchesRepository matchesRepository = new CachingMatchesRepository();
 
     @Test
-    void givenMatch_whenAddOrInsertMatch_returnMatch() {
+    public void givenMatch_whenAddOrInsertMatch_returnMatch() {
         Match match = new Match(UUID.randomUUID(), "home", "awayTeam", 0,0);
 
         Match insertedMatch = matchesRepository.addOrUpdateMatch(match);
@@ -25,7 +25,7 @@ class MatchesRepositoryTest {
     }
 
     @Test
-    void givenMatch_whenGetMatch_returnMatch() {
+    public void givenMatch_whenGetMatch_returnMatch() {
         Match match = new Match(UUID.randomUUID(), "home", "awayTeam", 0,0);
         matchesRepository.addOrUpdateMatch(match);
 
@@ -35,12 +35,23 @@ class MatchesRepositoryTest {
     }
 
     @Test
-    void givenNewMatch_whenGetMatch_returnNull() {
+    public void givenNewMatch_whenGetMatch_returnNull() {
         Match match = new Match(UUID.randomUUID(), "home", "awayTeam", 0,0);
 
         Match getMatch = matchesRepository.getMatch(match.matchId());
 
         assertNull(getMatch);
+    }
+
+    @Test
+    public void givenMatch_whenDeleteMatchIsCalled_returnDeletedMatchAndValidateDeletion() {
+        Match match = new Match(UUID.randomUUID(), "home", "awayTeam", 0,2);
+        matchesRepository.addOrUpdateMatch(match);
+
+        Match matchToDelete = matchesRepository.deleteMatch(match.matchId());
+
+        assertEquals(match, matchToDelete);
+        assertNull(matchesRepository.getMatch(match.matchId()));
     }
 
 }

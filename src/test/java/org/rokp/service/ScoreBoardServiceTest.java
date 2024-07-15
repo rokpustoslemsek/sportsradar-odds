@@ -15,6 +15,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,5 +58,18 @@ public class ScoreBoardServiceTest {
         assertEquals(homeScore, match.homeScore());
         assertEquals(awayScore, match.awayScore());
     }
+
+    @Test
+    public void givenMatch_whenFinishMatch_returnFinishedMatch(){
+        //GIVEN
+        UUID uuid = UUID.randomUUID();
+        Match matchToFinish = new Match(uuid, "home", "away", 1,1);
+        when(repository.deleteMatch(uuid)).thenReturn(matchToFinish);
+        //WHEN
+        Match match = scoreBoardService.finishMatch(uuid);
+        //THEN
+        verify(repository).deleteMatch(uuid);
+        assertEquals(matchToFinish, match);
+    };
 
 }

@@ -13,4 +13,6 @@ public interface ScoreBoardService {
     Match createNewMatch(String homeTeam, String awayTeam);
 
     Match updateMatchScore(UUID matchId,  int homeScore, int awayScore);
+
+    Match finishMatch(UUID matchId);
 }
