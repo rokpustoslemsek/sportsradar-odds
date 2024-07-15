@@ -1,9 +1,6 @@
 package org.rokp.repository;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.rokp.domain.Match;
 import org.rokp.repository.impl.CachingMatchesRepository;
 
@@ -59,16 +56,16 @@ public class MatchesRepositoryTest {
     public void givenMatches_whenGetMatchesInOrder_returnOrderedMatches() {
         Match match1 = new Match(UUID.randomUUID(), "home1", "away1", 0,2);
         Match match2 = new Match(UUID.randomUUID(), "home2", "away2", 0, 3);
-        Match match3 = new Match(UUID.randomUUID(), "home3", "away3", 0,2);
+        Match match3 = new Match(UUID.randomUUID(), "home3", "away3", 0,2, match1.startTime() + 2);
         matchesRepository.addOrUpdateMatch(match3);
         matchesRepository.addOrUpdateMatch(match2);
         matchesRepository.addOrUpdateMatch(match1);
-        //we really shouldnt be adding matches to storage via public methods since there could be side effects.... todo for later
+        //we really shouldn't be adding matches to storage via public methods since there could be side effects.... todo for later
 
-        List<Match> matches = matchesRepository.getMatchesOrderByScoreDescAndStartTime();
+        List<Match> matches = matchesRepository.getMatchesOrderByScoreDescAndStartTimeDesc();
 
-        assertEquals(match1, matches.get(1));
         assertEquals(match2, matches.get(0));
-        assertEquals(match3, matches.get(2));
+        assertEquals(match3, matches.get(1));
+        assertEquals(match1, matches.get(2)); // this match is last because it was started first
     }
 }

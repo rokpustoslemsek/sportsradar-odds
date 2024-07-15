@@ -18,13 +18,15 @@ public class ScoreBoardServiceImpl implements ScoreBoardService {
     public Match createNewMatch(String homeTeam, String awayTeam) {
         UUID matchId = UUID.randomUUID();
         Match match = new Match(matchId, homeTeam, awayTeam, 0, 0);
+        // TODO maybe we should check here that a team doesnt have a match in progress.
         return repository.addOrUpdateMatch(match);
     }
 
     @Override
     public Match updateMatchScore(UUID matchId, int homeScore, int awayScore) {
         Match matchToUpdate = repository.getMatch(matchId);
-        Match match = new Match(matchId, matchToUpdate.homeTeam(), matchToUpdate.awayTeam(), homeScore, awayScore);
+        //TODO add an edgecase check that match exists.
+        Match match = new Match(matchId, matchToUpdate.homeTeam(), matchToUpdate.awayTeam(), homeScore, awayScore, matchToUpdate.startTime());
         return repository.addOrUpdateMatch(match);
     }
 
@@ -35,6 +37,6 @@ public class ScoreBoardServiceImpl implements ScoreBoardService {
 
     @Override
     public List<Match> getMatches() {
-        return null;
+        return repository.getMatchesOrderByScoreDescAndStartTimeDesc();
     }
 }

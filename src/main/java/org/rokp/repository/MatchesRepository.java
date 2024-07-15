@@ -13,6 +13,6 @@ public interface MatchesRepository {
 
     Match deleteMatch(UUID matchId);
 
-    List<Match> getMatchesOrderByScoreDescAndStartTime();
+    List<Match> getMatchesOrderByScoreDescAndStartTimeDesc();
 
 }

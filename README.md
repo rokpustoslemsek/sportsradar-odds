@@ -31,3 +31,8 @@
 
 ## version 1.0.7
 - added contract and tests for getting all matches
+
+## version 1.0.8
+- added implementation for getting all matches
+- added component test for getting all matches
+- marked in the code, where the edge cases should be further addressed

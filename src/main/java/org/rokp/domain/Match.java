@@ -8,4 +8,7 @@ public record Match(UUID matchId, String homeTeam, String awayTeam, int homeScor
         this(matchId, homeTeam, awayTeam, homeScore, awayScore, System.currentTimeMillis());
     }
 
+    public int totalScore() {
+        return homeScore + awayScore;
+    }
 }

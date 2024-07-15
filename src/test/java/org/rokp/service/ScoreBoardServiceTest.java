@@ -59,6 +59,7 @@ public class ScoreBoardServiceTest {
         assertEquals(uuid, match.matchId());
         assertEquals(homeScore, match.homeScore());
         assertEquals(awayScore, match.awayScore());
+        assertEquals(matchToUpdate.startTime(), match.startTime());
     }
 
     @Test
@@ -79,7 +80,7 @@ public class ScoreBoardServiceTest {
         //GIVEN
         Match match1 = new Match(UUID.randomUUID(), "home1", "away1", 0,2);
         Match match2 = new Match(UUID.randomUUID(), "home2", "away2", 0, 3);
-        when(repository.getMatchesOrderByScoreDescAndStartTime()).thenReturn(Arrays.asList(match2, match1));
+        when(repository.getMatchesOrderByScoreDescAndStartTimeDesc()).thenReturn(Arrays.asList(match2, match1));
         //WHEN
         List<Match> matches = scoreBoardService.getMatches();
         //THEN

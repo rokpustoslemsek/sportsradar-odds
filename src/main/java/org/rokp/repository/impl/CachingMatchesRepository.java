@@ -4,6 +4,7 @@ import org.rokp.domain.Match;
 import org.rokp.repository.MatchesRepository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CachingMatchesRepository implements MatchesRepository {
 
@@ -26,7 +27,11 @@ public class CachingMatchesRepository implements MatchesRepository {
     }
 
     @Override
-    public List<Match> getMatchesOrderByScoreDescAndStartTime() {
-        return null;
+    public List<Match> getMatchesOrderByScoreDescAndStartTimeDesc() {
+        return matches.values().stream()
+                .sorted(
+                        Comparator.comparing(Match::totalScore)
+                        .thenComparing(Match::startTime).reversed())
+                .collect(Collectors.toList());
     }
 }
