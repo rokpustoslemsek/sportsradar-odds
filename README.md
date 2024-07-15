@@ -21,7 +21,10 @@
 - supported mocking of the matches repository in the test, since we don't care/know about all potential mocking needs the first time we write a test.
 
 ## version 1.0.4
--added implementation for persisting matches into a hashmap
+- added implementation for persisting matches into a hashmap
 
 ## version 1.0.5
--added contract to finish match and added tests
+- added contract to finish match and added tests
+
+## version 1.0.6
+- implemented finishing of the match, i.e. removal from the scoreboard

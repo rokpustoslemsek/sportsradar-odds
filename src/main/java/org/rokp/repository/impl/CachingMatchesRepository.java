@@ -23,6 +23,6 @@ public class CachingMatchesRepository implements MatchesRepository {
 
     @Override
     public Match deleteMatch(UUID matchId) {
-        return null;
+        return matches.remove(matchId);
     }
 }

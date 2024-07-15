@@ -29,6 +29,6 @@ public class ScoreBoardServiceImpl implements ScoreBoardService {
 
     @Override
     public Match finishMatch(UUID matchId) {
-        return null;
+        return repository.deleteMatch(matchId);
     }
 }
