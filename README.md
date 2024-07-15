@@ -15,3 +15,7 @@
 
 ## version 1.0.2
 - added match score update contract.
+
+## version 1.0.3
+- added match score update with persistence for matches.
+- supported mocking of the matches repository in the test, since we don't care/know about all potential mocking needs the first time we write a test.
