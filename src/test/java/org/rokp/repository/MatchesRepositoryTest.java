@@ -5,16 +5,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.rokp.domain.Match;
+import org.rokp.repository.impl.CachingMatchesRepository;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class)
 class MatchesRepositoryTest {
 
-    @Mock
-    MatchesRepository matchesRepository;
+    MatchesRepository matchesRepository = new CachingMatchesRepository();
 
     @Test
     void givenMatch_whenAddOrInsertMatch_returnMatch() {
