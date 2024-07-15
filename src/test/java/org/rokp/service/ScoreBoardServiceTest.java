@@ -10,6 +10,8 @@ import org.rokp.domain.Match;
 import org.rokp.repository.MatchesRepository;
 import org.rokp.service.impl.ScoreBoardServiceImpl;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,7 +62,7 @@ public class ScoreBoardServiceTest {
     }
 
     @Test
-    public void givenMatch_whenFinishMatch_returnFinishedMatch(){
+    public void givenMatch_whenFinishMatch_returnFinishedMatch() {
         //GIVEN
         UUID uuid = UUID.randomUUID();
         Match matchToFinish = new Match(uuid, "home", "away", 1,1);
@@ -71,5 +73,18 @@ public class ScoreBoardServiceTest {
         verify(repository).deleteMatch(uuid);
         assertEquals(matchToFinish, match);
     };
+
+    @Test
+    public void givenMatches_whenGetMatches_returnMatches() {
+        //GIVEN
+        Match match1 = new Match(UUID.randomUUID(), "home1", "away1", 0,2);
+        Match match2 = new Match(UUID.randomUUID(), "home2", "away2", 0, 3);
+        when(repository.getMatchesOrderByScoreDescAndStartTime()).thenReturn(Arrays.asList(match2, match1));
+        //WHEN
+        List<Match> matches = scoreBoardService.getMatches();
+        //THEN
+        assertEquals(match2, matches.getFirst());
+        assertEquals(match1, matches.getLast());
+    }
 
 }

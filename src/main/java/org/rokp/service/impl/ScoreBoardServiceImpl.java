@@ -4,6 +4,7 @@ import org.rokp.domain.Match;
 import org.rokp.repository.MatchesRepository;
 import org.rokp.service.ScoreBoardService;
 
+import java.util.List;
 import java.util.UUID;
 
 public class ScoreBoardServiceImpl implements ScoreBoardService {
@@ -30,5 +31,10 @@ public class ScoreBoardServiceImpl implements ScoreBoardService {
     @Override
     public Match finishMatch(UUID matchId) {
         return repository.deleteMatch(matchId);
+    }
+
+    @Override
+    public List<Match> getMatches() {
+        return null;
     }
 }

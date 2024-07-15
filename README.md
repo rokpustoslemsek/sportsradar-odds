@@ -28,3 +28,6 @@
 
 ## version 1.0.6
 - implemented finishing of the match, i.e. removal from the scoreboard
+
+## version 1.0.7
+- added contract and tests for getting all matches

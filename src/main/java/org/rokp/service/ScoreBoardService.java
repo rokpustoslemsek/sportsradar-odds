@@ -2,6 +2,7 @@ package org.rokp.service;
 
 import org.rokp.domain.Match;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,4 +16,6 @@ public interface ScoreBoardService {
     Match updateMatchScore(UUID matchId,  int homeScore, int awayScore);
 
     Match finishMatch(UUID matchId);
+
+    List<Match> getMatches();
 }

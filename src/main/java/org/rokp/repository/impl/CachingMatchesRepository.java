@@ -3,12 +3,11 @@ package org.rokp.repository.impl;
 import org.rokp.domain.Match;
 import org.rokp.repository.MatchesRepository;
 
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 public class CachingMatchesRepository implements MatchesRepository {
 
-    private static final HashMap<UUID, Match> matches = new HashMap<>();
+    private static final Map<UUID, Match> matches = Collections.synchronizedMap(new HashMap<>());
 
     @Override
     public Match addOrUpdateMatch(Match match) {
@@ -24,5 +23,10 @@ public class CachingMatchesRepository implements MatchesRepository {
     @Override
     public Match deleteMatch(UUID matchId) {
         return matches.remove(matchId);
+    }
+
+    @Override
+    public List<Match> getMatchesOrderByScoreDescAndStartTime() {
+        return null;
     }
 }
